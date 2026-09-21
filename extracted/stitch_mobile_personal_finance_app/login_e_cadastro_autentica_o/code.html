@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FinanOS - Autenticação Segura</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-container": "#b50036",
+            "secondary-fixed-dim": "#ffb2b7",
+            "on-surface": "#d3e4fe",
+            "surface-container-lowest": "#000f21",
+            "on-primary-container": "#00422b",
+            "surface-bright": "#2a3a4f",
+            "inverse-surface": "#d3e4fe",
+            "secondary": "#ffb2b7",
+            "on-secondary-fixed": "#40000d",
+            "surface-container": "#102034",
+            "surface-container-highest": "#26364a",
+            "on-tertiary": "#283044",
+            "surface-tint": "#4edea3",
+            "on-secondary-container": "#ffc2c4",
+            "inverse-primary": "#006c49",
+            "error": "#ffb4ab",
+            "secondary-fixed": "#ffdadb",
+            "on-primary-fixed-variant": "#005236",
+            "primary": "#4edea3",
+            "tertiary-fixed-dim": "#bec6e0",
+            "on-primary-fixed": "#002113",
+            "on-error-container": "#ffdad6",
+            "on-background": "#d3e4fe",
+            "primary-fixed-dim": "#4edea3",
+            "surface-variant": "#26364a",
+            "inverse-on-surface": "#213145",
+            "primary-container": "#10b981",
+            "on-primary": "#003824",
+            "background": "#031427",
+            "on-tertiary-fixed": "#131b2e",
+            "surface-container-high": "#1b2b3f",
+            "surface-dim": "#031427",
+            "on-secondary-fixed-variant": "#92002a",
+            "on-surface-variant": "#bbcabf",
+            "tertiary-container": "#9ba2bb",
+            "outline-variant": "#3c4a42",
+            "on-error": "#690005",
+            "on-tertiary-fixed-variant": "#3f465c",
+            "primary-fixed": "#6ffbbe",
+            "surface": "#031427",
+            "tertiary": "#bec6e0",
+            "tertiary-fixed": "#dae2fd",
+            "outline": "#86948a",
+            "on-secondary": "#67001b",
+            "on-tertiary-container": "#31394d",
+            "error-container": "#93000a",
+            "surface-container-low": "#0b1c30"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "1.25rem",
+            "space-xl": "2rem",
+            "margin-mobile": "1rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "gutter": "1rem",
+            "gutter-sm": "0.75rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "label-sm": ["Inter"],
+            "headline-lg": ["Inter"],
+            "label-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "display-hero": ["Inter"],
+            "body-sm": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "headline-sm": ["Inter"],
+            "numeric-balance": ["Inter"],
+            "headline-md": ["Inter"]
+          },
+          "fontSize": {
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.025em", "fontWeight": "700" }],
+            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+            "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "display-hero": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.005em", "fontWeight": "400" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "numeric-balance": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col justify-between items-center selection:bg-primary-container selection:text-on-primary-container relative overflow-x-hidden antialiased">
+<!-- Fundo com iluminação atmosférica sutil -->
+<div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+<div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[34rem] h-[34rem] bg-primary-container/10 blur-[130px] rounded-full"></div>
+<div class="absolute top-1/2 -left-36 w-72 h-72 bg-surface-container-high/40 blur-[100px] rounded-full"></div>
+</div>
+<!-- Container Mobile Shell (9:16 Aspect Flow, max-w-md) -->
+<main class="relative z-10 w-full max-w-md mx-auto px-margin-mobile pt-6 pb-8 flex flex-col flex-1 justify-between">
+<!-- Seção 1: Topo / Branding & Segurança -->
+<header class="w-full flex flex-col items-center text-center">
+<!-- Selo de Criptografia Bancária -->
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-low border border-outline-variant/40 shadow-sm mb-6">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="lock" data-weight="fill" style="font-variation-settings: 'FILL' 1; font-size: 14px;">lock</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Criptografia bancária de ponta a ponta 256-bit</span>
+</div>
+<!-- Logotipo FinanOS -->
+<div class="relative flex items-center justify-center w-16 h-16 rounded-2xl bg-surface-container border border-outline-variant/40 shadow-lg shadow-surface-container-lowest/50 mb-4 group">
+<div class="absolute inset-0 bg-primary/10 rounded-2xl blur-sm transition-all duration-300"></div>
+<div class="relative flex items-center justify-center w-12 h-12 rounded-xl bg-surface-container-high border border-outline-variant/30 text-primary">
+<span class="material-symbols-outlined text-2xl" data-icon="account_balance_wallet" data-weight="fill" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+</div>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-xs" data-icon="trending_up">trending_up</span>
+</div>
+</div>
+<!-- Título & Subtítulo -->
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight">FinanOS</h1>
+<p class="font-headline-sm text-headline-sm text-on-surface mt-1">Retome o controle do seu dinheiro</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5 max-w-xs">
+        Gerencie seus gastos, investimentos e metas em um só lugar com total segurança
+      </p>
+</header>
+<!-- Seção 2: Segmented Control (Tabs) & Formulário -->
+<div class="w-full mt-6 flex flex-col">
+<!-- Seletor de Ação (Segmented Control) -->
+<div class="grid grid-cols-2 p-1 rounded-xl bg-surface-container-low border border-outline-variant/30 mb-6">
+<button class="py-2.5 px-4 rounded-lg font-label-md text-label-md text-on-surface bg-surface-container-high shadow-sm border border-outline-variant/20 transition-all duration-200" id="tab-login" onclick="switchAuthTab('login')" type="button">
+          Entrar
+        </button>
+<button class="py-2.5 px-4 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all duration-200" id="tab-register" onclick="switchAuthTab('register')" type="button">
+          Criar Conta
+        </button>
+</div>
+<!-- Formulário de Autenticação -->
+<form class="space-y-4" id="auth-form" onsubmit="event.preventDefault();">
+<!-- Campo Adicional (Exibido no Cadastro via JS) -->
+<div class="hidden space-y-1.5" id="field-name">
+<label class="block font-label-md text-label-md text-on-surface" for="user-name">Nome completo</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-on-surface-variant" data-icon="person">person</span>
+<input class="w-full h-14 pl-11 pr-4 bg-surface-container-low border border-outline-variant/50 rounded-xl font-body-md text-body-md text-on-surface placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-150 outline-none" id="user-name" placeholder="Como prefere ser chamado?" type="text"/>
+</div>
+</div>
+<!-- Campo E-mail -->
+<div class="space-y-1.5">
+<label class="block font-label-md text-label-md text-on-surface" for="email">E-mail</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-on-surface-variant" data-icon="mail">mail</span>
+<input autocomplete="email" class="w-full h-14 pl-11 pr-4 bg-surface-container-low border border-outline-variant/50 rounded-xl font-body-md text-body-md text-on-surface placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-150 outline-none" id="email" inputmode="email" placeholder="seu.email@exemplo.com" required="" type="email"/>
+</div>
+</div>
+<!-- Campo Senha -->
+<div class="space-y-1.5">
+<label class="block font-label-md text-label-md text-on-surface" for="password">Senha</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-on-surface-variant" data-icon="lock">lock</span>
+<input autocomplete="current-password" class="w-full h-14 pl-11 pr-12 bg-surface-container-low border border-outline-variant/50 rounded-xl font-body-md text-body-md text-on-surface placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-150 outline-none" id="password" placeholder="Digite sua senha de acesso" required="" type="password"/>
+<button aria-label="Alternar visibilidade da senha" class="absolute right-3.5 flex items-center justify-center w-8 h-8 rounded-lg text-on-surface-variant hover:text-on-surface focus:outline-none transition-colors" id="toggle-password-btn" onclick="togglePasswordVisibility()" type="button">
+<span class="material-symbols-outlined text-xl" data-icon="visibility" id="password-eye-icon">visibility</span>
+</button>
+</div>
+</div>
+<!-- Linha de Apoio: Lembrar & Esqueceu Senha -->
+<div class="flex items-center justify-between pt-1" id="row-remember">
+<label class="flex items-center gap-2 cursor-pointer select-none">
+<input class="w-4 h-4 rounded bg-surface-container-low border-outline-variant/60 text-primary-container focus:ring-primary/30 focus:ring-offset-0 focus:ring-2" id="remember-device" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Lembrar deste dispositivo</span>
+</label>
+<a class="font-label-md text-label-md text-primary hover:underline underline-offset-2 transition-colors" href="#recuperar-senha">
+            Esqueceu sua senha?
+          </a>
+</div>
+<!-- Botão Primário (CTA) -->
+<div class="pt-2">
+<button class="w-full h-[52px] rounded-2xl bg-primary-container hover:bg-primary-fixed text-on-primary-container font-headline-sm text-headline-sm flex items-center justify-center gap-2 shadow-lg shadow-primary-container/20 active:scale-[0.98] transition-all duration-150 cursor-pointer" id="btn-submit" type="submit">
+<span id="btn-text">Entrar na Conta</span>
+<span class="material-symbols-outlined text-xl" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</form>
+<!-- Divisor Social -->
+<div class="relative my-6 text-center">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-outline-variant/30"></div>
+</div>
+<span class="relative px-3 bg-background font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
+          Ou continue com
+        </span>
+</div>
+<!-- Botões de Login Social -->
+<div class="grid grid-cols-2 gap-3">
+<!-- Google -->
+<button class="h-12 px-4 rounded-xl bg-surface-container-low border border-outline-variant/40 hover:bg-surface-container hover:border-outline-variant/70 flex items-center justify-center gap-2.5 text-on-surface transition-all active:scale-[0.98]" type="button">
+<svg class="w-5 h-5 shrink-0" viewbox="0 0 24 24">
+<path d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z" fill="#4285F4"></path>
+<path d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.35 24 12 24z" fill="#34A853"></path>
+<path d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.98 0 12s.45 3.82 1.25 5.42l4.03-3.15z" fill="#FBBC05"></path>
+<path d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.35 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z" fill="#EA4335"></path>
+</svg>
+<span class="font-label-md text-label-md">Google</span>
+</button>
+<!-- Apple -->
+<button class="h-12 px-4 rounded-xl bg-surface-container-low border border-outline-variant/40 hover:bg-surface-container hover:border-outline-variant/70 flex items-center justify-center gap-2.5 text-on-surface transition-all active:scale-[0.98]" type="button">
+<svg class="w-5 h-5 fill-current shrink-0" viewbox="0 0 24 24">
+<path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.75 1.04-1.8 0.93-2.85-.9.04-1.98.6-2.61 1.34-.55.63-1.03 1.66-.9 2.69 1 .08 2.01-.51 2.58-1.18z"></path>
+</svg>
+<span class="font-label-md text-label-md">Apple</span>
+</button>
+</div>
+</div>
+<!-- Seção 3: Rodapé de Confiança e Termos -->
+<footer class="w-full pt-8 flex flex-col items-center text-center space-y-3">
+<!-- Indicador Biometria & LGPD -->
+<div class="flex items-center gap-2 text-on-surface-variant/80 font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-base text-primary" data-icon="fingerprint">fingerprint</span>
+<span>Acesso biométrico disponível após o primeiro login</span>
+</div>
+<!-- Termos e LGPD -->
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs leading-relaxed">
+        Ao continuar, você concorda com nossos 
+        <a class="text-on-surface underline hover:text-primary transition-colors" href="#termos">Termos de Uso</a> 
+        e 
+        <a class="text-on-surface underline hover:text-primary transition-colors" href="#privacidade">Política de Privacidade</a> 
+        conforme as diretrizes da LGPD.
+      </p>
+</footer>
+</main>
+<!-- Lógica Inline de Alternância de Abas e Visibilidade de Senha -->
+<script>
+    let currentMode = 'login';
+
+    function switchAuthTab(mode) {
+      currentMode = mode;
+      const tabLogin = document.getElementById('tab-login');
+      const tabRegister = document.getElementById('tab-register');
+      const nameField = document.getElementById('field-name');
+      const rowRemember = document.getElementById('row-remember');
+      const btnText = document.getElementById('btn-text');
+
+      if (mode === 'login') {
+        // Tab Login Ativa
+        tabLogin.className = "py-2.5 px-4 rounded-lg font-label-md text-label-md text-on-surface bg-surface-container-high shadow-sm border border-outline-variant/20 transition-all duration-200";
+        tabRegister.className = "py-2.5 px-4 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all duration-200";
+
+        nameField.classList.add('hidden');
+        rowRemember.classList.remove('hidden');
+        btnText.textContent = "Entrar na Conta";
+      } else {
+        // Tab Cadastro Ativa
+        tabRegister.className = "py-2.5 px-4 rounded-lg font-label-md text-label-md text-on-surface bg-surface-container-high shadow-sm border border-outline-variant/20 transition-all duration-200";
+        tabLogin.className = "py-2.5 px-4 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all duration-200";
+
+        nameField.classList.remove('hidden');
+        rowRemember.classList.add('hidden');
+        btnText.textContent = "Criar Minha Conta Gratuita";
+      }
+    }
+
+    function togglePasswordVisibility() {
+      const passwordInput = document.getElementById('password');
+      const eyeIcon = document.getElementById('password-eye-icon');
+
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        eyeIcon.textContent = 'visibility_off';
+      } else {
+        passwordInput.type = 'password';
+        eyeIcon.textContent = 'visibility';
+      }
+    }
+  </script>
+</body></html>

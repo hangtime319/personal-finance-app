@@ -1,0 +1,399 @@
+<!DOCTYPE html><html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Nova Transação - Gestão Financeira Pessoal</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-dim": "#031427",
+            "surface": "#031427",
+            "tertiary-fixed": "#dae2fd",
+            "primary": "#4edea3",
+            "primary-container": "#10b981",
+            "on-tertiary-fixed-variant": "#3f465c",
+            "on-tertiary": "#283044",
+            "on-secondary-fixed-variant": "#92002a",
+            "inverse-on-surface": "#213145",
+            "on-primary": "#003824",
+            "on-secondary": "#67001b",
+            "on-surface-variant": "#bbcabf",
+            "inverse-surface": "#d3e4fe",
+            "outline-variant": "#3c4a42",
+            "on-primary-container": "#00422b",
+            "on-surface": "#d3e4fe",
+            "on-tertiary-container": "#31394d",
+            "secondary": "#ffb2b7",
+            "on-background": "#d3e4fe",
+            "error-container": "#93000a",
+            "surface-tint": "#4edea3",
+            "secondary-fixed-dim": "#ffb2b7",
+            "secondary-fixed": "#ffdadb",
+            "surface-container-low": "#0b1c30",
+            "on-primary-fixed-variant": "#005236",
+            "primary-fixed-dim": "#4edea3",
+            "error": "#ffb4ab",
+            "surface-container-lowest": "#000f21",
+            "primary-fixed": "#6ffbbe",
+            "surface-container-highest": "#26364a",
+            "secondary-container": "#b50036",
+            "on-error-container": "#ffdad6",
+            "surface-variant": "#26364a",
+            "tertiary-fixed-dim": "#bec6e0",
+            "tertiary-container": "#9ba2bb",
+            "on-secondary-fixed": "#40000d",
+            "surface-container": "#102034",
+            "tertiary": "#bec6e0",
+            "outline": "#86948a",
+            "inverse-primary": "#006c49",
+            "surface-bright": "#2a3a4f",
+            "on-tertiary-fixed": "#131b2e",
+            "on-secondary-container": "#ffc2c4",
+            "on-primary-fixed": "#002113",
+            "surface-container-high": "#1b2b3f",
+            "background": "#031427",
+            "on-error": "#690005"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xl": "2rem",
+            "space-lg": "1.5rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "gutter": "1rem",
+            "margin": "1.25rem",
+            "gutter-sm": "0.75rem",
+            "margin-mobile": "1rem",
+            "space-md": "1rem"
+          },
+          "fontFamily": {
+            "label-md": ["Inter"],
+            "numeric-balance": ["Inter"],
+            "headline-lg": ["Inter"],
+            "body-sm": ["Inter"],
+            "body-md": ["Inter"],
+            "headline-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "headline-sm": ["Inter"],
+            "display-hero": ["Inter"],
+            "label-sm": ["Inter"]
+          },
+          "fontSize": {
+            "label-md": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+            "numeric-balance": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.025em", "fontWeight": "700"}],
+            "body-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.005em", "fontWeight": "400"}],
+            "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}],
+            "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+            "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "400"}],
+            "headline-lg-mobile": ["26px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "headline-sm": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "display-hero": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+            "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600"}]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      filter: invert(0.8);
+      cursor: pointer;
+    }
+    /* Hide scrollbar for smooth visual aesthetic */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex justify-center selection:bg-primary selection:text-on-primary">
+<!-- Mobile Viewport Shell (Max Width 480px / 9:16 layout) -->
+<div class="w-full max-w-md bg-surface min-h-screen flex flex-col relative pb-28">
+<!-- Top App Bar / Modal Header -->
+<header class="sticky top-0 z-40 bg-surface/90 backdrop-blur-md px-margin-mobile h-16 flex items-center justify-between border-b border-outline-variant/20">
+<button aria-label="Voltar ou fechar" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all active:scale-95" type="button">
+<span class="material-symbols-outlined text-headline-sm">close</span>
+</button>
+<h1 class="text-headline-sm font-headline-sm text-on-surface tracking-tight">Lançamento manual</h1>
+<div class="w-10 h-10 flex items-center justify-center">
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors" title="Informações e Ajuda" type="button">
+<span class="material-symbols-outlined text-[20px]">help_outline</span>
+</button>
+</div>
+</header>
+<!-- Scrollable Content Canvas -->
+<main class="flex-1 px-margin-mobile pt-4 pb-6 flex flex-col gap-6">
+<!-- Segmented Type Selector (Despesa vs Receita) -->
+<section aria-label="Tipo de transação" class="bg-surface-container-low p-1.5 rounded-2xl border border-outline-variant/30 flex items-center gap-1 shadow-inner" role="radiogroup">
+<button aria-checked="true" class="flex-1 py-2.5 px-3 rounded-xl flex items-center justify-center gap-2 font-label-md text-label-md transition-all duration-200 bg-secondary-container text-white shadow-md" id="btn-expense" role="radio" type="button">
+<span class="material-symbols-outlined text-[18px]">arrow_outward</span>
+<span class="">Despesa</span>
+</button>
+<button aria-checked="false" class="flex-1 py-2.5 px-3 rounded-xl flex items-center justify-center gap-2 font-label-md text-label-md transition-all duration-200 text-on-surface-variant hover:text-on-surface hover:bg-surface-container" id="btn-income" role="radio" type="button">
+<span class="material-symbols-outlined text-[18px]">arrow_downward</span>
+<span class="">Receita</span>
+</button>
+</section>
+<!-- Amount Input Card (Keypad-inspired heroic hero) -->
+<section class="bg-surface-container rounded-3xl p-5 border border-outline-variant/20 relative overflow-hidden shadow-lg">
+<div class="absolute -right-10 -top-10 w-32 h-32 bg-secondary/5 rounded-full blur-2xl pointer-events-none" id="ambient-glow"></div>
+<div class="flex items-center justify-between mb-1">
+<span class="text-body-sm font-body-sm text-on-surface-variant">Valor da transação</span>
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant border border-outline-variant/30">BRL (R$)</span>
+</div>
+<div class="flex items-baseline gap-2 py-2">
+<span class="text-headline-md font-headline-md text-secondary transition-colors" id="amount-prefix">R$</span>
+<input aria-label="Valor monetário" class="w-full bg-transparent border-none p-0 text-numeric-balance font-numeric-balance tracking-tight focus:ring-0 focus:outline-none text-on-surface placeholder:text-on-surface-variant/40" id="amount-input" inputmode="decimal" placeholder="0,00" type="text" value="142,50">
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant/70 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">info</span>
+          Toque para editar o montante
+        </p>
+</section>
+<!-- Transaction Fields Group -->
+<section class="space-y-4">
+<!-- Title Input -->
+<div class="flex flex-col gap-1.5">
+<label class="text-label-md font-label-md text-on-surface-variant flex items-center gap-1.5" for="title-input">
+<span class="material-symbols-outlined text-[16px] text-primary">edit_note</span>
+            Título da transação <span class="text-secondary">*</span>
+</label>
+<div class="relative flex items-center">
+<input class="w-full h-14 bg-surface-container-low border border-outline-variant/30 rounded-2xl px-4 text-body-lg font-body-lg text-on-surface placeholder:text-on-surface-variant/40 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all" id="title-input" name="title" placeholder="Ex: Supermercado Mensal" required="" type="text" value="Supermercado Mensal">
+</div>
+</div>
+<!-- Date & Category Grid Split -->
+<div class="grid grid-cols-1 gap-4">
+<!-- Date Input -->
+<div class="flex flex-col gap-1.5">
+<label class="text-label-md font-label-md text-on-surface-variant flex items-center gap-1.5" for="date-input">
+<span class="material-symbols-outlined text-[16px] text-primary">calendar_today</span>
+              Data do Registro <span class="text-secondary">*</span>
+</label>
+<div class="relative flex items-center">
+<input class="w-full h-14 bg-surface-container-low border border-outline-variant/30 rounded-2xl px-4 text-body-md font-body-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all" id="date-input" type="date" value="2025-05-18">
+</div>
+</div>
+<!-- Mandatory Category Selector -->
+<div class="flex flex-col gap-1.5">
+<label class="text-label-md font-label-md text-on-surface-variant flex items-center gap-1.5" for="category-select">
+<span class="material-symbols-outlined text-[16px] text-primary">category</span>
+              Categoria obrigatória <span class="text-secondary">*</span>
+</label>
+<div class="relative">
+<select class="w-full h-14 bg-surface-container-low border border-outline-variant/30 rounded-2xl pl-12 pr-10 text-body-md font-body-md text-on-surface appearance-none focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all cursor-pointer" id="category-select" required="">
+<option selected="" value="alimentacao">Alimentação</option>
+<option value="farmacia">Farmácia</option>
+<option value="conta_fixa">Conta Fixa</option>
+<option value="gasto_extra">Gasto Extra</option>
+<option value="transporte">Transporte</option>
+</select>
+<!-- Dynamic Category Icon Anchor -->
+<div class="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none flex items-center justify-center text-primary" id="category-icon-wrapper">
+<span class="material-symbols-outlined text-[20px]" id="current-category-icon">restaurant</span>
+</div>
+<div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant flex items-center">
+<span class="material-symbols-outlined text-[22px]">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Tags / Category Pills for fast thumb selection -->
+<div class="space-y-1.5 pt-1">
+<span class="text-label-sm font-label-sm text-on-surface-variant/80">Seleção Rápida</span>
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+<button class="category-chip active flex-shrink-0 px-3 py-1.5 rounded-full bg-primary/20 border border-primary/40 text-primary font-label-sm text-label-sm flex items-center gap-1.5 hover:bg-primary/30 transition-all" onclick="setCategory('alimentacao')" type="button">
+<span class="material-symbols-outlined text-[16px]">restaurant</span>
+<span class="">Alimentação</span>
+</button>
+<button class="category-chip flex-shrink-0 px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface-variant font-label-sm text-label-sm flex items-center gap-1.5 hover:text-on-surface transition-all" onclick="setCategory('farmacia')" type="button">
+<span class="material-symbols-outlined text-[16px]">medication</span>
+<span class="">Farmácia</span>
+</button>
+<button class="category-chip flex-shrink-0 px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface-variant font-label-sm text-label-sm flex items-center gap-1.5 hover:text-on-surface transition-all" onclick="setCategory('conta_fixa')" type="button">
+<span class="material-symbols-outlined text-[16px]">receipt</span>
+<span class="">Conta Fixa</span>
+</button>
+<button class="category-chip flex-shrink-0 px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface-variant font-label-sm text-label-sm flex items-center gap-1.5 hover:text-on-surface transition-all" onclick="setCategory('gasto_extra')" type="button">
+<span class="material-symbols-outlined text-[16px]">shopping_bag</span>
+<span class="">Gasto Extra</span>
+</button>
+<button class="category-chip flex-shrink-0 px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface-variant font-label-sm text-label-sm flex items-center gap-1.5 hover:text-on-surface transition-all" onclick="setCategory('transporte')" type="button">
+<span class="material-symbols-outlined text-[16px]">directions_car</span>
+<span class="">Transporte</span>
+</button>
+</div>
+</div>
+<!-- Optional Observation / Attachment Input -->
+<div class="flex flex-col gap-1.5 pt-1">
+<label class="text-label-md font-label-md text-on-surface-variant flex items-center justify-between" for="obs-input">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-tertiary">notes</span>
+              Observações &amp; Comprovante
+            </span>
+<span class="text-label-sm font-label-sm text-outline">Opcional</span>
+</label>
+<div class="relative bg-surface-container-low border border-outline-variant/30 rounded-2xl p-3 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all">
+<textarea class="w-full bg-transparent border-0 p-0 text-body-md font-body-md text-on-surface placeholder:text-on-surface-variant/40 focus:ring-0 focus:outline-none resize-none" id="obs-input" placeholder="Adicionar notas sobre o gasto ou anexo..." rows="2"></textarea>
+<div class="flex items-center justify-between pt-2 mt-2 border-t border-outline-variant/20">
+<button class="inline-flex items-center gap-1.5 text-label-sm font-label-sm text-on-surface-variant hover:text-primary px-2.5 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">attach_file</span>
+<span class="">Anexar Recibo</span>
+</button>
+<div class="flex items-center gap-1 text-label-sm font-label-sm text-outline">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+<span class="">Criptografado</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Primary Save Button (Fixed Ergonomic Thumb Zone) -->
+<div class="pt-2">
+<button class="w-full h-14 bg-primary text-on-primary font-headline-sm text-headline-sm rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:bg-primary-fixed active:scale-[0.98] transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface cursor-pointer" id="btn-save" type="button">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="">Salvar Transação</span>
+</button>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Mandatory Shell Component from JSON Blueprint) -->
+<!-- JSON: label_texts: ["Início", "Extrato", "Relatórios", "Perfil"], icons: ["dashboard", "receipt_long", "pie_chart", "person"] -->
+<nav aria-label="Navegação Principal" class="fixed bottom-0 left-0 w-full z-50 bg-surface-container dark:bg-surface-container border-t border-outline-variant/30 backdrop-blur-md shadow-lg flex justify-around items-center px-margin-mobile py-2 max-w-md mx-auto right-0">
+<!-- Início -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant font-label-sm text-label-sm py-1 hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined text-[22px]">dashboard</span>
+<span class="text-label-sm font-label-sm mt-0.5">Início</span>
+</a>
+<!-- Extrato (Active destination for transaction record intent) -->
+<a aria-current="page" class="flex flex-col items-center justify-center text-primary dark:text-primary font-label-md text-label-sm py-1 hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+<span class="text-label-sm font-label-sm mt-0.5">Extrato</span>
+</a>
+<!-- Relatórios -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant font-label-sm text-label-sm py-1 hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined text-[22px]">pie_chart</span>
+<span class="text-label-sm font-label-sm mt-0.5">Relatórios</span>
+</a>
+<!-- Perfil -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant font-label-sm text-label-sm py-1 hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined text-[22px]">person</span>
+<span class="text-label-sm font-label-sm mt-0.5">Perfil</span>
+</a>
+</nav>
+</div>
+<!-- Interactive Logic for State Handling -->
+<script>
+    const btnExpense = document.getElementById('btn-expense');
+    const btnIncome = document.getElementById('btn-income');
+    const amountPrefix = document.getElementById('amount-prefix');
+    const ambientGlow = document.getElementById('ambient-glow');
+    const categorySelect = document.getElementById('category-select');
+    const currentCategoryIcon = document.getElementById('current-category-icon');
+    const btnSave = document.getElementById('btn-save');
+
+    const categoryIconMap = {
+      'alimentacao': 'restaurant',
+      'farmacia': 'medication',
+      'conta_fixa': 'receipt',
+      'gasto_extra': 'shopping_bag',
+      'transporte': 'directions_car'
+    };
+
+    let isExpense = true;
+
+    btnExpense.addEventListener('click', () => {
+      isExpense = true;
+      btnExpense.setAttribute('aria-checked', 'true');
+      btnIncome.setAttribute('aria-checked', 'false');
+      
+      // Expense visual active state (Coral / Red Accent)
+      btnExpense.className = "flex-1 py-2.5 px-3 rounded-xl flex items-center justify-center gap-2 font-label-md text-label-md transition-all duration-200 bg-secondary-container text-white shadow-md";
+      btnIncome.className = "flex-1 py-2.5 px-3 rounded-xl flex items-center justify-center gap-2 font-label-md text-label-md transition-all duration-200 text-on-surface-variant hover:text-on-surface hover:bg-surface-container";
+      
+      amountPrefix.classList.remove('text-primary');
+      amountPrefix.classList.add('text-secondary');
+      ambientGlow.className = "absolute -right-10 -top-10 w-32 h-32 bg-secondary/10 rounded-full blur-2xl pointer-events-none transition-all duration-300";
+    });
+
+    btnIncome.addEventListener('click', () => {
+      isExpense = false;
+      btnExpense.setAttribute('aria-checked', 'false');
+      btnIncome.setAttribute('aria-checked', 'true');
+      
+      // Income visual active state (Emerald / Green Accent)
+      btnIncome.className = "flex-1 py-2.5 px-3 rounded-xl flex items-center justify-center gap-2 font-label-md text-label-md transition-all duration-200 bg-primary text-on-primary shadow-md";
+      btnExpense.className = "flex-1 py-2.5 px-3 rounded-xl flex items-center justify-center gap-2 font-label-md text-label-md transition-all duration-200 text-on-surface-variant hover:text-on-surface hover:bg-surface-container";
+      
+      amountPrefix.classList.remove('text-secondary');
+      amountPrefix.classList.add('text-primary');
+      ambientGlow.className = "absolute -right-10 -top-10 w-32 h-32 bg-primary/10 rounded-full blur-2xl pointer-events-none transition-all duration-300";
+    });
+
+    function setCategory(value) {
+      categorySelect.value = value;
+      updateCategoryIcon(value);
+      
+      // Update chip styles
+      document.querySelectorAll('.category-chip').forEach(chip => {
+        chip.classList.remove('bg-primary/20', 'border-primary/40', 'text-primary');
+        chip.classList.add('bg-surface-container-low', 'border-outline-variant/30', 'text-on-surface-variant');
+      });
+      event.currentTarget.classList.remove('bg-surface-container-low', 'border-outline-variant/30', 'text-on-surface-variant');
+      event.currentTarget.classList.add('bg-primary/20', 'border-primary/40', 'text-primary');
+    }
+
+    function updateCategoryIcon(categoryKey) {
+      const icon = categoryIconMap[categoryKey] || 'category';
+      currentCategoryIcon.textContent = icon;
+    }
+
+    categorySelect.addEventListener('change', (e) => {
+      updateCategoryIcon(e.target.value);
+    });
+
+    // Save Feedback interaction
+    btnSave.addEventListener('click', () => {
+      const originalText = btnSave.innerHTML;
+      btnSave.innerHTML = `<span class="material-symbols-outlined animate-spin text-[20px]">progress_activity</span><span>Salvando...</span>`;
+      btnSave.classList.add('opacity-90');
+      
+      setTimeout(() => {
+        btnSave.innerHTML = `<span class="material-symbols-outlined text-[20px]">done_all</span><span>Transação Registrada!</span>`;
+        btnSave.classList.remove('bg-primary');
+        btnSave.classList.add('bg-primary-container', 'text-white');
+        
+        setTimeout(() => {
+          btnSave.innerHTML = originalText;
+          btnSave.classList.remove('bg-primary-container', 'text-white', 'opacity-90');
+          btnSave.classList.add('bg-primary', 'text-on-primary');
+        }, 1800);
+      }, 700);
+    });
+  </script>
+
+
+</body></html>

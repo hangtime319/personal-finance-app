@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Extrato - Gestão Financeira</title>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "error": "#ffb4ab",
+            "tertiary": "#bec6e0",
+            "outline-variant": "#3c4a42",
+            "inverse-surface": "#d3e4fe",
+            "on-surface-variant": "#bbcabf",
+            "outline": "#86948a",
+            "surface-container-high": "#1b2b3f",
+            "tertiary-container": "#9ba2bb",
+            "secondary-fixed": "#ffdadb",
+            "secondary-fixed-dim": "#ffb2b7",
+            "on-tertiary-container": "#31394d",
+            "on-secondary-container": "#ffc2c4",
+            "on-primary-container": "#00422b",
+            "surface": "#031427",
+            "tertiary-fixed": "#dae2fd",
+            "primary-fixed-dim": "#4edea3",
+            "on-tertiary-fixed": "#131b2e",
+            "tertiary-fixed-dim": "#bec6e0",
+            "surface-container-lowest": "#000f21",
+            "on-surface": "#d3e4fe",
+            "surface-container-highest": "#26364a",
+            "secondary": "#ffb2b7",
+            "secondary-container": "#b50036",
+            "surface-variant": "#26364a",
+            "on-background": "#d3e4fe",
+            "background": "#031427",
+            "surface-container": "#102034",
+            "surface-dim": "#031427",
+            "surface-bright": "#2a3a4f",
+            "on-secondary-fixed-variant": "#92002a",
+            "on-secondary": "#67001b",
+            "inverse-primary": "#006c49",
+            "primary-fixed": "#6ffbbe",
+            "on-primary": "#003824",
+            "on-primary-fixed-variant": "#005236",
+            "on-error": "#690005",
+            "primary": "#4edea3",
+            "error-container": "#93000a",
+            "on-tertiary": "#283044",
+            "on-error-container": "#ffdad6",
+            "on-secondary-fixed": "#40000d",
+            "surface-tint": "#4edea3",
+            "inverse-on-surface": "#213145",
+            "surface-container-low": "#0b1c30",
+            "on-primary-fixed": "#002113",
+            "primary-container": "#10b981",
+            "on-tertiary-fixed-variant": "#3f465c"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "margin": "1.25rem",
+            "gutter": "1rem",
+            "margin-mobile": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2rem",
+            "gutter-sm": "0.75rem",
+            "space-md": "1rem",
+            "space-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "display-hero": ["Inter"],
+            "numeric-balance": ["Inter"],
+            "body-md": ["Inter"],
+            "label-md": ["Inter"],
+            "headline-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-sm": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "headline-lg": ["Inter"],
+            "headline-sm": ["Inter"],
+            "body-sm": ["Inter"]
+          },
+          "fontSize": {
+            "display-hero": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+            "numeric-balance": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+            "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}],
+            "label-md": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+            "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+            "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "400"}],
+            "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+            "headline-lg-mobile": ["26px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.025em", "fontWeight": "700"}],
+            "headline-sm": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "body-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.005em", "fontWeight": "400"}]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex justify-center selection:bg-primary-container selection:text-on-primary-container">
+<!-- Mobile Shell (9:16 portrait viewport container) -->
+<div class="w-full max-w-xl min-h-screen flex flex-col bg-background relative pb-28 shadow-2xl overflow-x-hidden">
+<!-- Top Sticky Header Navigation Cluster -->
+<header class="sticky top-0 z-30 bg-surface/90 backdrop-blur-md">
+<!-- Title & Utility Action Bar -->
+<div class="flex justify-between items-center w-full px-4 h-16 max-w-xl mx-auto">
+<button aria-label="Voltar para o Dashboard" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</button>
+<h1 class="text-headline-sm font-headline-sm text-on-surface tracking-tight">
+          Extrato
+        </h1>
+<button aria-label="Pesquisar lançamentos" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[24px]">search</span>
+</button>
+</div>
+<!-- Period Selector & Filtering Bar -->
+<div class="px-margin-mobile pb-3 flex items-center justify-between gap-2">
+<!-- Month / Period Picker Switcher -->
+<div class="flex items-center bg-surface-container rounded-full p-1 border border-outline-variant/30 shadow-sm">
+<button aria-label="Mês Anterior" class="w-7 h-7 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high active:scale-90 transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<div class="flex items-center gap-1.5 px-2.5">
+<span class="material-symbols-outlined text-primary text-[16px]">calendar_today</span>
+<span class="text-label-md font-label-md text-on-surface whitespace-nowrap">Setembro 2026</span>
+</div>
+<button aria-label="Próximo Mês" class="w-7 h-7 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high active:scale-90 transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+<!-- Filter Trigger with Active Counter Badge -->
+<button class="flex items-center gap-1.5 bg-surface-container hover:bg-surface-container-high active:scale-95 transition-all px-3 py-1.5 rounded-full border border-outline-variant/40 text-on-surface" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary">tune</span>
+<span class="text-label-md font-label-md">Filtros</span>
+<span class="w-4 h-4 rounded-full bg-primary text-on-primary text-[10px] font-bold flex items-center justify-center">2</span>
+</button>
+</div>
+<!-- Quick Filter Horizontal Scroll Tray -->
+<div class="px-margin-mobile pb-3 flex items-center gap-2 overflow-x-auto no-scrollbar">
+<button class="px-3 py-1 rounded-full text-label-sm font-label-sm bg-primary text-on-primary flex items-center gap-1 shrink-0 active:scale-95 transition-all" type="button">
+<span>Todos</span>
+</button>
+<button class="px-3 py-1 rounded-full text-label-sm font-label-sm bg-surface-container border border-outline-variant/30 text-on-surface-variant hover:text-on-surface flex items-center gap-1 shrink-0 active:scale-95 transition-all" type="button">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span>Entradas</span>
+</button>
+<button class="px-3 py-1 rounded-full text-label-sm font-label-sm bg-surface-container border border-outline-variant/30 text-on-surface-variant hover:text-on-surface flex items-center gap-1 shrink-0 active:scale-95 transition-all" type="button">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span>Saídas</span>
+</button>
+<button class="px-3 py-1 rounded-full text-label-sm font-label-sm bg-surface-container border border-outline-variant/30 text-on-surface-variant hover:text-on-surface flex items-center gap-1 shrink-0 active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[14px]">credit_card</span>
+<span>Cartões</span>
+</button>
+<button class="px-3 py-1 rounded-full text-label-sm font-label-sm bg-surface-container border border-outline-variant/30 text-on-surface-variant hover:text-on-surface flex items-center gap-1 shrink-0 active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[14px]">category</span>
+<span>Categorias</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 px-margin-mobile space-y-4 pt-1">
+<!-- Summary of Period Card (Resumo do Período) -->
+<section aria-label="Resumo do Período" class="rounded-3xl bg-surface-container p-4 border border-outline-variant/30 relative overflow-hidden shadow-lg">
+<!-- Subtle Ambient Background Light Flow -->
+<div class="absolute -top-12 -right-12 w-44 h-44 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-12 -left-12 w-44 h-44 bg-secondary-container/15 rounded-full blur-3xl pointer-events-none"></div>
+<div class="relative z-10">
+<div class="flex items-center justify-between pb-3 border-b border-outline-variant/20">
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Saldo Acumulado do Período</span>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="text-headline-md font-headline-md text-primary tracking-tight">+R$ 4.280,00</span>
+<span class="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-md bg-on-primary-container text-primary text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[12px]">trending_up</span>
+                  +12.4%
+                </span>
+</div>
+</div>
+<div class="w-9 h-9 rounded-2xl bg-surface-container-high flex items-center justify-center text-primary border border-outline-variant/30">
+<span class="material-symbols-outlined text-[20px]">account_balance_wallet</span>
+</div>
+</div>
+<!-- Three Metrics Grid -->
+<div class="grid grid-cols-3 gap-2 pt-3 text-left">
+<!-- Entradas -->
+<div class="p-2 rounded-2xl bg-surface-container-low/70 border border-outline-variant/20 flex flex-col">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-primary">arrow_downward_alt</span>
+<span class="text-label-sm font-label-sm">Entradas</span>
+</div>
+<span class="text-body-md font-label-md text-primary mt-1">+R$ 7.500,00</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant/80 text-[10px] mt-0.5">1 receita</span>
+</div>
+<!-- Saídas -->
+<div class="p-2 rounded-2xl bg-surface-container-low/70 border border-outline-variant/20 flex flex-col">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-secondary">arrow_upward_alt</span>
+<span class="text-label-sm font-label-sm">Saídas</span>
+</div>
+<span class="text-body-md font-label-md text-secondary mt-1">-R$ 3.220,00</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant/80 text-[10px] mt-0.5">7 despesas</span>
+</div>
+<!-- Saldo Líquido -->
+<div class="p-2 rounded-2xl bg-surface-container-low/70 border border-outline-variant/20 flex flex-col">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-tertiary">balance</span>
+<span class="text-label-sm font-label-sm">Líquido</span>
+</div>
+<span class="text-body-md font-label-md text-on-surface mt-1">+R$ 4.280,00</span>
+<span class="text-label-sm font-label-sm text-primary text-[10px] mt-0.5 font-medium">Positivo</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Transaction List Grouped by Date -->
+<section aria-label="Lista de Transações Agrupadas" class="space-y-5">
+<!-- Group 1: Hoje, 10 de Setembro -->
+<div class="space-y-2">
+<!-- Sticky Subheader with Date & Daily Net Subtotal -->
+<div class="flex items-center justify-between px-1 py-1">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<h2 class="text-label-md font-label-md text-on-surface">Hoje, 10 de Setembro</h2>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high border border-outline-variant/20 text-secondary text-label-sm font-label-sm">
+              -R$ 142,50
+            </span>
+</div>
+<!-- Transaction Items -->
+<div class="space-y-2">
+<!-- Item 1: Compras da Semana (Mercado) -->
+<article class="group flex items-center justify-between p-3.5 rounded-2xl bg-surface-container hover:bg-surface-container-high active:scale-[0.99] border border-outline-variant/20 transition-all cursor-pointer shadow-sm" tabindex="0">
+<div class="flex items-center gap-3 min-w-0">
+<!-- Squircle Icon: Teal/Emerald Tinted for Grocery -->
+<div class="w-11 h-11 rounded-2xl bg-emerald-950/80 border border-primary/20 text-primary flex items-center justify-center shrink-0 shadow-inner group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[22px]">shopping_cart</span>
+</div>
+<div class="min-w-0">
+<h3 class="text-body-md font-label-md text-on-surface truncate group-hover:text-primary transition-colors">
+                    Compras da Semana
+                  </h3>
+<div class="flex items-center gap-2 mt-0.5 text-on-surface-variant text-body-sm font-body-sm">
+<span>Mercado</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>16:42 • Cartão Débito</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 pl-3 shrink-0">
+<div class="text-right">
+<p class="text-body-md font-label-md text-secondary tracking-tight">
+                    -R$ 115,00
+                  </p>
+<span class="text-label-sm font-label-sm text-on-surface-variant/70 text-[10px]">Confirmado</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px] group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+</div>
+</article>
+<!-- Item 2: Café da Manhã e Pão Francês (Padaria) -->
+<article class="group flex items-center justify-between p-3.5 rounded-2xl bg-surface-container hover:bg-surface-container-high active:scale-[0.99] border border-outline-variant/20 transition-all cursor-pointer shadow-sm" tabindex="0">
+<div class="flex items-center gap-3 min-w-0">
+<!-- Squircle Icon: Amber Tint for Bakery -->
+<div class="w-11 h-11 rounded-2xl bg-amber-950/70 border border-amber-500/30 text-amber-300 flex items-center justify-center shrink-0 shadow-inner group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[22px]">bakery_dining</span>
+</div>
+<div class="min-w-0">
+<h3 class="text-body-md font-label-md text-on-surface truncate group-hover:text-amber-300 transition-colors">
+                    Café da Manhã e Pão Francês
+                  </h3>
+<div class="flex items-center gap-2 mt-0.5 text-on-surface-variant text-body-sm font-body-sm">
+<span>Padaria</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>08:15 • PIX</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 pl-3 shrink-0">
+<div class="text-right">
+<p class="text-body-md font-label-md text-secondary tracking-tight">
+                    -R$ 27,50
+                  </p>
+<span class="text-label-sm font-label-sm text-on-surface-variant/70 text-[10px]">Confirmado</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px] group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+</div>
+</article>
+</div>
+</div>
+<!-- Group 2: Ontem, 09 de Setembro -->
+<div class="space-y-2">
+<!-- Sticky Subheader with Date & Daily Net Subtotal -->
+<div class="flex items-center justify-between px-1 py-1">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<h2 class="text-label-md font-label-md text-on-surface-variant">Ontem, 09 de Setembro</h2>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high border border-outline-variant/20 text-secondary text-label-sm font-label-sm">
+              -R$ 394,00
+            </span>
+</div>
+<!-- Transaction Items -->
+<div class="space-y-2">
+<!-- Item 3: Medicamentos de Uso Contínuo (Farmácia) -->
+<article class="group flex items-center justify-between p-3.5 rounded-2xl bg-surface-container hover:bg-surface-container-high active:scale-[0.99] border border-outline-variant/20 transition-all cursor-pointer shadow-sm" tabindex="0">
+<div class="flex items-center gap-3 min-w-0">
+<!-- Squircle Icon: Rose Tint for Pharmacy -->
+<div class="w-11 h-11 rounded-2xl bg-rose-950/70 border border-rose-500/30 text-rose-300 flex items-center justify-center shrink-0 shadow-inner group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[22px]">medication</span>
+</div>
+<div class="min-w-0">
+<h3 class="text-body-md font-label-md text-on-surface truncate group-hover:text-rose-300 transition-colors">
+                    Medicamentos de Uso Contínuo
+                  </h3>
+<div class="flex items-center gap-2 mt-0.5 text-on-surface-variant text-body-sm font-body-sm">
+<span>Farmácia</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>19:30 • Crédito 1x</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 pl-3 shrink-0">
+<div class="text-right">
+<p class="text-body-md font-label-md text-secondary tracking-tight">
+                    -R$ 184,00
+                  </p>
+<span class="text-label-sm font-label-sm text-on-surface-variant/70 text-[10px]">Drogasil</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px] group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+</div>
+</article>
+<!-- Item 4: Abastecimento Gasolina Comum (Transporte) -->
+<article class="group flex items-center justify-between p-3.5 rounded-2xl bg-surface-container hover:bg-surface-container-high active:scale-[0.99] border border-outline-variant/20 transition-all cursor-pointer shadow-sm" tabindex="0">
+<div class="flex items-center gap-3 min-w-0">
+<!-- Squircle Icon: Purple Tint for Transport -->
+<div class="w-11 h-11 rounded-2xl bg-purple-950/70 border border-purple-500/30 text-purple-300 flex items-center justify-center shrink-0 shadow-inner group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[22px]">local_gas_station</span>
+</div>
+<div class="min-w-0">
+<h3 class="text-body-md font-label-md text-on-surface truncate group-hover:text-purple-300 transition-colors">
+                    Abastecimento Gasolina Comum
+                  </h3>
+<div class="flex items-center gap-2 mt-0.5 text-on-surface-variant text-body-sm font-body-sm">
+<span>Transporte</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>11:10 • Débito</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 pl-3 shrink-0">
+<div class="text-right">
+<p class="text-body-md font-label-md text-secondary tracking-tight">
+                    -R$ 210,00
+                  </p>
+<span class="text-label-sm font-label-sm text-on-surface-variant/70 text-[10px]">Posto Ipiranga</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px] group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+</div>
+</article>
+</div>
+</div>
+<!-- Group 3: 05 de Setembro -->
+<div class="space-y-2">
+<!-- Sticky Subheader with Date & Daily Net Subtotal -->
+<div class="flex items-center justify-between px-1 py-1">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<h2 class="text-label-md font-label-md text-on-surface">05 de Setembro</h2>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-on-primary-container text-primary text-label-sm font-label-sm">
+              +R$ 6.320,00
+            </span>
+</div>
+<!-- Transaction Items -->
+<div class="space-y-2">
+<!-- Item 5: Depósito Salário Mensal (Receita Fixa) -->
+<article class="group flex items-center justify-between p-3.5 rounded-2xl bg-surface-container hover:bg-surface-container-high active:scale-[0.99] border border-outline-variant/20 transition-all cursor-pointer shadow-sm relative overflow-hidden" tabindex="0">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="flex items-center gap-3 min-w-0 pl-1">
+<!-- Squircle Icon: Emerald for Income -->
+<div class="w-11 h-11 rounded-2xl bg-emerald-950 border border-primary/40 text-primary flex items-center justify-center shrink-0 shadow-inner group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[22px]">account_balance</span>
+</div>
+<div class="min-w-0">
+<h3 class="text-body-md font-label-md text-on-surface truncate group-hover:text-primary transition-colors">
+                    Depósito Salário Mensal
+                  </h3>
+<div class="flex items-center gap-2 mt-0.5 text-on-surface-variant text-body-sm font-body-sm">
+<span class="text-primary font-medium">Receita Fixa</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>06:00 • TED</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 pl-3 shrink-0">
+<div class="text-right">
+<p class="text-body-md font-label-md text-primary tracking-tight">
+                    +R$ 7.500,00
+                  </p>
+<span class="text-label-sm font-label-sm text-primary/80 text-[10px] font-medium">Creditado</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px] group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+</div>
+</article>
+<!-- Item 6: Aluguel e Condomínio (Conta Fixa) -->
+<article class="group flex items-center justify-between p-3.5 rounded-2xl bg-surface-container hover:bg-surface-container-high active:scale-[0.99] border border-outline-variant/20 transition-all cursor-pointer shadow-sm" tabindex="0">
+<div class="flex items-center gap-3 min-w-0">
+<!-- Squircle Icon: Indigo Tint for Housing / Fixed -->
+<div class="w-11 h-11 rounded-2xl bg-indigo-950/70 border border-indigo-500/30 text-indigo-300 flex items-center justify-center shrink-0 shadow-inner group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[22px]">real_estate_agent</span>
+</div>
+<div class="min-w-0">
+<h3 class="text-body-md font-label-md text-on-surface truncate group-hover:text-indigo-300 transition-colors">
+                    Aluguel e Condomínio
+                  </h3>
+<div class="flex items-center gap-2 mt-0.5 text-on-surface-variant text-body-sm font-body-sm">
+<span>Conta Fixa</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>10:30 • Débito Automático</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 pl-3 shrink-0">
+<div class="text-right">
+<p class="text-body-md font-label-md text-secondary tracking-tight">
+                    -R$ 980,00
+                  </p>
+<span class="text-label-sm font-label-sm text-on-surface-variant/70 text-[10px]">Compensado</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px] group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+</div>
+</article>
+<!-- Item 7: Feira de Orgânicos Semanal (Feira) -->
+<article class="group flex items-center justify-between p-3.5 rounded-2xl bg-surface-container hover:bg-surface-container-high active:scale-[0.99] border border-outline-variant/20 transition-all cursor-pointer shadow-sm" tabindex="0">
+<div class="flex items-center gap-3 min-w-0">
+<!-- Squircle Icon: Green Tint for Organic / Fair -->
+<div class="w-11 h-11 rounded-2xl bg-teal-950/70 border border-teal-500/30 text-teal-300 flex items-center justify-center shrink-0 shadow-inner group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[22px]">nutrition</span>
+</div>
+<div class="min-w-0">
+<h3 class="text-body-md font-label-md text-on-surface truncate group-hover:text-teal-300 transition-colors">
+                    Feira de Orgânicos Semanal
+                  </h3>
+<div class="flex items-center gap-2 mt-0.5 text-on-surface-variant text-body-sm font-body-sm">
+<span>Feira</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>14:05 • PIX</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 pl-3 shrink-0">
+<div class="text-right">
+<p class="text-body-md font-label-md text-secondary tracking-tight">
+                    -R$ 160,00
+                  </p>
+<span class="text-label-sm font-label-sm text-on-surface-variant/70 text-[10px]">Feira Central</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px] group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+</div>
+</article>
+<!-- Item 8: Presente Aniversário (Gasto Extra) -->
+<article class="group flex items-center justify-between p-3.5 rounded-2xl bg-surface-container hover:bg-surface-container-high active:scale-[0.99] border border-outline-variant/20 transition-all cursor-pointer shadow-sm" tabindex="0">
+<div class="flex items-center gap-3 min-w-0">
+<!-- Squircle Icon: Pink Tint for Extra / Gifts -->
+<div class="w-11 h-11 rounded-2xl bg-fuchsia-950/70 border border-fuchsia-500/30 text-fuchsia-300 flex items-center justify-center shrink-0 shadow-inner group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[22px]">featured_seasonal_and_gifts</span>
+</div>
+<div class="min-w-0">
+<h3 class="text-body-md font-label-md text-on-surface truncate group-hover:text-fuchsia-300 transition-colors">
+                    Presente Aniversário
+                  </h3>
+<div class="flex items-center gap-2 mt-0.5 text-on-surface-variant text-body-sm font-body-sm">
+<span>Gasto Extra</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>18:22 • Crédito</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 pl-3 shrink-0">
+<div class="text-right">
+<p class="text-body-md font-label-md text-secondary tracking-tight">
+                    -R$ 40,00
+                  </p>
+<span class="text-label-sm font-label-sm text-on-surface-variant/70 text-[10px]">Livraria</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px] group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+</div>
+</article>
+</div>
+</div>
+<!-- End of Stream Indicator -->
+<div class="pt-4 pb-8 flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-outline-variant text-[24px]">verified</span>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">Todos os 8 lançamentos de Setembro carregados.</p>
+</div>
+</section>
+</main>
+<!-- Contextual FAB (Floating Action Button) for Novo Lançamento -->
+<aside class="fixed bottom-20 right-4 z-40 max-w-xl mx-auto">
+<button aria-label="Adicionar Novo Lançamento" class="group flex items-center gap-2 h-14 pl-4 pr-5 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md shadow-xl shadow-primary/20 hover:bg-primary active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[24px] font-bold group-hover:rotate-90 transition-transform duration-200">add</span>
+<span class="font-semibold tracking-wide">Novo Lançamento</span>
+</button>
+</aside>
+<!-- Bottom Navigation Bar (Executed strictly from Shared Components JSON) -->
+<nav aria-label="Navegação Principal" class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-margin-mobile py-2 max-w-xl mx-auto bg-surface-container rounded-t-xl shadow-lg backdrop-blur-md">
+<!-- Destination 1: Início -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-sm text-label-sm py-1 hover:text-primary transition-colors duration-150 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-[22px]">dashboard</span>
+<span class="mt-0.5">Início</span>
+</a>
+<!-- Destination 2: Extrato (ACTIVE TAB strictly determined & locked) -->
+<a aria-current="page" class="flex flex-col items-center justify-center text-primary font-label-md text-label-sm py-1 relative hover:text-primary transition-colors duration-150 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+<span class="mt-0.5 font-bold">Extrato</span>
+<span class="w-1 h-1 rounded-full bg-primary mt-0.5"></span>
+</a>
+<!-- Destination 3: Relatórios -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-sm text-label-sm py-1 hover:text-primary transition-colors duration-150 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-[22px]">pie_chart</span>
+<span class="mt-0.5">Relatórios</span>
+</a>
+<!-- Destination 4: Perfil -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-sm text-label-sm py-1 hover:text-primary transition-colors duration-150 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-[22px]">person</span>
+<span class="mt-0.5">Perfil</span>
+</a>
+</nav>
+</div>
+</body></html>
